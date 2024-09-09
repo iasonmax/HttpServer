@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Sockets;
 
 namespace HttpServer
 {
-    internal class Response
+    public class Response
     {
+        private byte[] data = null;
+        private Response(Byte[] data)
+        {
+
+        }
+
+        public static Response From(Request request)
+        {
+
+        }
+
+        public void Post(NetworkStream stream)
+        {
+            stream.Write()
+        }
     }
 }
