@@ -7,8 +7,11 @@ namespace HttpServer
 {
     public class HTTPServer
     {
+        public const String MSG_DIR = "C:\\Users\\Gardna\\projects\\HttpServer\\HttpServer\\bin\\Debug\\net8.0\\Root\\msg";
+        public const String WEB_DIR = "C:\\Users\\Gardna\\projects\\HttpServer\\HttpServer\\bin\\Debug\\net8.0\\Root\\web";
         public const String VERSION = "HTTP/1.1";
-        public const String
+        public const String SERVER = "Dream";
+
         private bool running = false;
 
         private TcpListener listener;
