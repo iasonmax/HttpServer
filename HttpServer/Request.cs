@@ -8,7 +8,7 @@
         private Request(String type, String url, String host)
         {
             Type = type;
-            Url = url;
+            URL = url;
             Host = host;
         }
         public static Request GetRequest(String request)

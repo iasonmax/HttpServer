@@ -31,6 +31,8 @@ namespace HttpServer
                 else
                 {
                     DirectoryInfo directoryInfo = new DirectoryInfo(fileInfo + "/");
+                    if (!directoryInfo.Exists)
+                        return MakePageNotFound();
                     FileInfo[] files = directoryInfo.GetFiles();
                     foreach (FileInfo fileInFiles in files)
                     {
@@ -52,15 +54,13 @@ namespace HttpServer
 
         private static Response MakeFromFile(FileInfo fileInfo)
         {
-            String file = Environment.CurrentDirectory + HTTPServer.MSG_DIR + "400.html";
-            FileInfo fileInfo = new FileInfo(file);
             FileStream fileStream = fileInfo.OpenRead();
             BinaryReader reader = new BinaryReader(fileStream);
             Byte[] data = new Byte[fileStream.Length];
             reader.Read(data, 0, data.Length);
+            fileStream.Close();
 
-
-            return new Response("400 bad request", "html/text", data);
+            return new Response("200 OK", "html/text", data);
         }
 
         private static Response MakeNullRequest()
@@ -71,7 +71,7 @@ namespace HttpServer
             BinaryReader reader = new BinaryReader(fileStream);
             Byte[] data = new Byte[fileStream.Length];
             reader.Read(data, 0, data.Length);
-
+            fileStream.Close();
 
             return new Response("400 bad request", "html/text", data);
         }
@@ -84,7 +84,7 @@ namespace HttpServer
             BinaryReader reader = new BinaryReader(fileStream);
             Byte[] data = new Byte[fileStream.Length];
             reader.Read(data, 0, data.Length);
-
+            fileStream.Close();
 
             return new Response("404 page not found", "html/text", data);
         }
@@ -96,7 +96,7 @@ namespace HttpServer
             BinaryReader reader = new BinaryReader(fileStream);
             Byte[] data = new Byte[fileStream.Length];
             reader.Read(data, 0, data.Length);
-
+            fileStream.Close();
 
             return new Response("405 method not allowed", "html/text", data);
         }
